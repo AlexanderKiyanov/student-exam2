@@ -1,6 +1,6 @@
 pipeline {
   
-  agent any
+  agent linux
     
   stages {
     stage("build") {
