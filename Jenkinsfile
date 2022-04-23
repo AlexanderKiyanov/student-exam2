@@ -15,6 +15,8 @@ pipeline {
         cd ~/workspace/cicd-exam
         pipenv --rm
         pipenv shell
+	pip install -e .
+	export FLASK_APP=js_example
         pip install -e '.[test]'
         coverage run -m pytest
         coverage report
