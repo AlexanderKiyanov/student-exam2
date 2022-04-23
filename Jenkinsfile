@@ -1,13 +1,4 @@
 pipeline {
-	
-    environment {
-        // pipenv
-        PIPENV_YES="true"
-        PIPENV_NOSPIN="YES"
-        PIPENV_VENV_IN_PROJECT="true"
-	WORKON_HOME=~/.virtualenvs
-	FLASK_APP=js_example
-    }
 
   agent {
     label 'ssh-docker-agent'
@@ -22,6 +13,8 @@ pipeline {
 	sh '''#!/bin/bash -x
 	mkdir -p ~/.virtualenvs
         cd ~/workspace/cicd-exam
+	export WORKON_HOME=~/.virtualenvs
+	export FLASK_APP=js_example
         pipenv --rm
 	pipenv install
         '''
