@@ -1,4 +1,11 @@
 pipeline {
+	
+    environment {
+        // pipenv
+        PIPENV_YES="true"
+        PIPENV_NOSPIN="YES"
+        PIPENV_VENV_IN_PROJECT="true"
+    }
 
   agent {
     label 'ssh-docker-agent'
@@ -11,7 +18,7 @@ pipeline {
 
 	sh '''#!/bin/bash -x
 	mkdir -p ~/.virtualenvs
-	export WORKON_HOME=~/.virtualenvs
+	env
         cd ~/workspace/cicd-exam
         pipenv --rm
         pipenv shell
