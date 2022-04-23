@@ -11,7 +11,7 @@ pipeline {
 
 	sh '''#!/bin/bash -x
 	mkdir -p ~/.virtualenvs
-	export WORKON_HOME=/var/.virtualenvs
+	export WORKON_HOME=~/.virtualenvs
         cd ~/workspace/cicd-exam
         pipenv --rm
         pipenv shell
