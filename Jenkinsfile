@@ -5,7 +5,7 @@ pipeline {
   }
 
   stages {
-    stage("build") {
+    stage("install test") {
       steps {
 	      
         echo '---------------------- recreate virtualenv --------------------------'
@@ -21,10 +21,13 @@ pipeline {
       }
     }
 
-    stage("test") {
+    stage("run test") {
       steps {
         echo '-------------------------- install test -----------------------------'
 	
+	export WORKON_HOME=~/.virtualenvs
+	export FLASK_APP=js_example
+	      
 	sh '''#!/bin/bash -x
         pipenv run pip install -e '.[test]'
 	
