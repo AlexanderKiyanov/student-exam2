@@ -25,10 +25,12 @@ pipeline {
       steps {
         echo '-------------------------- install test -----------------------------'
 	
-	export WORKON_HOME=~/.virtualenvs
-	export FLASK_APP=js_example
 	      
 	sh '''#!/bin/bash -x
+	
+	export WORKON_HOME=~/.virtualenvs
+	export FLASK_APP=js_example
+	
         pipenv run pip install -e '.[test]'
 	
 	echo '---------------------------- run test -------------------------------'
