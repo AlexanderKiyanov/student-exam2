@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage("build") {
       steps {
-        echo 'building the NEW app'
+        echo 'building the NEW app GO!'
 
 	sh '''#!/bin/bash
         cd ~/workspace/cicd-exam
