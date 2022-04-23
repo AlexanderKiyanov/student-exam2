@@ -17,7 +17,6 @@ pipeline {
     stage("build") {
       steps {
 	      
-	echo new start
         echo ---------------------- recreate virtualenv --------------------------
 
 	sh '''#!/bin/bash -x
