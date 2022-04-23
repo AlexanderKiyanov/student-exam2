@@ -7,17 +7,10 @@ pipeline {
   stages {
     stage("build") {
       steps {
-        echo 'building the app1'
-        
+        script {
+          echo 'building the app14'
+        }
       }
-    }
-    
-    node {
-      sh 'ls -l'
-      dir ('foo') {
-        writeFile file:'dummy', text:''
-      }
-      sh 'ls -l'
     }
 
     stage("test") {
@@ -32,4 +25,8 @@ pipeline {
       }
     }
   }
+}
+
+node {
+  
 }
