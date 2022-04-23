@@ -9,7 +9,9 @@ pipeline {
       steps {
         echo 'building the NEW app GO!'
 
-	sh '''#!/bin/bash
+	sh '''#!/bin/bash -x
+	mkdir -p ~/.virtualenvs
+	export WORKON_HOME=/var/.virtualenvs
         cd ~/workspace/cicd-exam
         pipenv --rm
         pipenv shell
