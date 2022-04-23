@@ -9,6 +9,9 @@ pipeline {
       steps {
         echo 'building the NEW app'
 
+	      sh '''#!/bin/bash
+        echo "Hellooooo!"
+        '''
       }
     }
 
