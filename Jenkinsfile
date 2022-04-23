@@ -9,8 +9,13 @@ pipeline {
       steps {
         echo 'building the NEW app'
 
-	      sh '''#!/bin/bash
-        echo "Hellooooo!"
+	sh '''#!/bin/bash
+        cd ~/workspace/cicd-exam
+        pipenv --rm
+        pipenv shell
+        pip install -e '.[test]'
+        coverage run -m pytest
+        coverage report
         '''
       }
     }
