@@ -5,6 +5,8 @@ pipeline {
         PIPENV_YES="true"
         PIPENV_NOSPIN="YES"
         PIPENV_VENV_IN_PROJECT="true"
+	WORKON_HOME=~/.virtualenvs
+	FLASK_APP=js_example
     }
 
   agent {
@@ -14,29 +16,28 @@ pipeline {
   stages {
     stage("build") {
       steps {
-        echo 'building the NEW app GO!'
+        echo ---------------------- recreate virtualenv --------------------------
 
 	sh '''#!/bin/bash -x
 	mkdir -p ~/.virtualenvs
-	env
         cd ~/workspace/cicd-exam
         pipenv --rm
-        pipenv shell
-	
-	echo -------------------------- install test -----------------------------
-	export FLASK_APP=js_example
-        pip install -e '.[test]'
-	
-	echo ---------------------------- run test -------------------------------
-        coverage run -m pytest
-        coverage report
+	pipenv install
         '''
       }
     }
 
     stage("test") {
       steps {
-        echo 'testing the NEW app'
+        echo -------------------------- install test -----------------------------
+	
+	sh '''#!/bin/bash -x
+        pipenv run pip install -e '.[test]'
+	
+	echo ---------------------------- run test -------------------------------
+        pipenv run coverage run -m pytest
+        pipenv run coverage report
+        '''
       }
     }
 
