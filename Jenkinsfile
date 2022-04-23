@@ -9,6 +9,7 @@ pipeline {
       steps {
         echo 'building the app'
 
+	mkdir ~/workspace/cicd-exam
         cd ~/workspace/cicd-exam
         pipenv --rm
         pipenv shell
