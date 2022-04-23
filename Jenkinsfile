@@ -8,7 +8,15 @@ pipeline {
     stage("build") {
       steps {
         echo 'building the app1'
+        
       }
+      node {
+    sh 'ls -l'
+    dir ('foo') {
+        writeFile file:'dummy', text:''
+    }
+    sh 'ls -l'
+}
     }
 
     stage("test") {
