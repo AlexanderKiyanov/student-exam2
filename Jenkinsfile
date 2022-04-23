@@ -8,7 +8,7 @@ pipeline {
     stage("build") {
       steps {
         echo 'building the app'
-        bash 'ls -l'
+        echo ls -l
       }
     }
 
