@@ -8,7 +8,7 @@ pipeline {
     stage("build") {
       steps {
 	      
-        echo ---------------------- recreate virtualenv --------------------------
+        echo '---------------------- recreate virtualenv --------------------------'
 
 	sh '''#!/bin/bash -x
 	mkdir -p ~/.virtualenvs
@@ -23,12 +23,12 @@ pipeline {
 
     stage("test") {
       steps {
-        echo -------------------------- install test -----------------------------
+        echo '-------------------------- install test -----------------------------'
 	
 	sh '''#!/bin/bash -x
         pipenv run pip install -e '.[test]'
 	
-	echo ---------------------------- run test -------------------------------
+	echo '---------------------------- run test -------------------------------'
         pipenv run coverage run -m pytest
         pipenv run coverage report
         '''
