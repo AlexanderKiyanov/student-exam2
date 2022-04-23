@@ -1,6 +1,8 @@
 pipeline {
   
-  agent any
+  agent {
+    label 'ssh-docker-agent'
+  }
     
   stages {
     stage("build") {
