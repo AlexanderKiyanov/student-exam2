@@ -9,7 +9,7 @@ pipeline {
 			steps {
 				echo '---------------------- start build --------------------------'			
 				
-				sh '''#!/bin/bash
+				sh '''#!/bin/bash -x
 							
 				cat > Dockerfile <<EOF
 				FROM python:3.8-slim-buster
