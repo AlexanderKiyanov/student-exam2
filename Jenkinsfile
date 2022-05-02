@@ -5,9 +5,9 @@ pipeline {
 	}
 	
 	stages {
-		stage("build") {
+		stage("startup") {
 			steps {
-				echo '---------------------- start build and start --------------------------'			
+				echo '---------------------- start startup --------------------------'			
 				
 				sh '''#!/bin/bash -x
 							
@@ -20,9 +20,10 @@ pipeline {
 				docker rm --force cont1
 				
 				'''
-				echo '----------------------- end build and start ---------------------------'			
+				echo '----------------------- end startup ---------------------------'			
 			}
 		}
+		
 		stage("test") {
 			steps {
 				echo '---------------------- start testing --------------------------'			
@@ -40,6 +41,31 @@ pipeline {
 				
 				'''
 				echo '----------------------- end testing ---------------------------'			
+			}
+		}
+		
+		stage("build image") {
+			steps {
+				echo '---------------------- start build image --------------------------'			
+				
+				sh '''#!/bin/bash -x
+				
+				cat > Dockerfile <<- EOF
+				FROM python:3.8-slim-buster
+				COPY . /student-exam2/
+				WORKDIR /student-exam2
+				RUN pip install -e .
+				ENV FLASK_APP=js_example
+				CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=80"]
+				EXPOSE 80/tcp
+				EOF
+
+				docker build -t appimg:latest .
+				
+				docker run -it -dp 8888:80 --name cont1 appimg:latest
+				
+				'''
+				echo '----------------------- end build image ---------------------------'			
 			}
 		}
 	}
