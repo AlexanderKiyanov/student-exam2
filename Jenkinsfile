@@ -62,10 +62,27 @@ pipeline {
 
 				docker build -t appimg:latest .
 				
-				docker run -it -dp 8888:80 --name cont1 appimg:latest
+				docker run -it -dp 8888:80 --name cont1 alexanderkiyanov/appimg:latest
 				
 				'''
 				echo '----------------------- end build image ---------------------------'			
+			}
+		}
+		
+		stage("docker hub") {
+			steps {
+				echo '---------------------- start push to docker hub --------------------------'			
+				
+				sh '''#!/bin/bash -x
+				
+				docker images
+				cat docker-hub.txt | docker login --username alexanderkiyanov --password-stdin
+				docker push alexanderkiyanov/appimg:latest
+				
+				docker rm --force alexanderkiyanov/appimg:latest
+				
+				'''
+				echo '----------------------- end push to docker hub ---------------------------'			
 			}
 		}
 	}
