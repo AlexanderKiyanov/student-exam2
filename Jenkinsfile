@@ -11,7 +11,7 @@ pipeline {
 				
 				sh '''#!/bin/bash -x
 							
-				cat > Dockerfile <<EOF
+				cat > Dockerfile <<- EOF
 				FROM python:3.8-slim-buster
 				COPY . /student-exam2/
 				WORKDIR /student-exam2
