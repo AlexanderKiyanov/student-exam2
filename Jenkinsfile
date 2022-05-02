@@ -60,7 +60,7 @@ pipeline {
 				EXPOSE 80/tcp
 				EOF
 
-				docker build -t appimg:latest .
+				docker build -t alexanderkiyanov/appimg:latest .
 				
 				docker run -it -dp 8888:80 --name cont1 alexanderkiyanov/appimg:latest
 				
