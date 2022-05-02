@@ -6,5 +6,10 @@ pipeline {
 			label 'ssh-docker-agent'
 		}
 	}
-
+	
+	stages {
+		stage("startup") {
+			echo '---------------------- startup --------------------------'
+		}
+	}
 }
