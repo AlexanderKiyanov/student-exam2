@@ -82,8 +82,9 @@ pipeline {
 				docker images
 				echo $DOCKERHUB_PASS_PSW | docker login -u $DOCKERHUB_PASS_USR --password-stdin
 				docker push alexanderkiyanov/appimg:latest
-				
-				docker rm --force alexanderkiyanov/appimg:latest
+
+				docker rm --force cont1
+				docker rmi alexanderkiyanov/appimg:latest
 				
 				'''
 				echo '----------------------- end push to docker hub ---------------------------'			
