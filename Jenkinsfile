@@ -80,7 +80,7 @@ pipeline {
 				sh '''#!/bin/bash -x
 				
 				docker images
-				echo $DOCKERHUB_PASS | docker login -u alexanderkiyanov --password-stdin
+				echo $DOCKERHUB_PASS_PSW | docker login -u $DOCKERHUB_PASS_USR --password-stdin
 				docker push alexanderkiyanov/appimg:latest
 				
 				docker rm --force alexanderkiyanov/appimg:latest
