@@ -4,6 +4,10 @@ pipeline {
 		label 'ssh-docker-agent'
 	}
 	
+	environment {
+		DOCKERHUB_PASS=credentials('dockerhub-pass')
+	}
+	
 	stages {
 		stage("startup") {
 			steps {
@@ -76,7 +80,7 @@ pipeline {
 				sh '''#!/bin/bash -x
 				
 				docker images
-				cat docker-hub.txt | docker login --username alexanderkiyanov --password-stdin
+				echo $DOCKERHUB_PASS | docker login -u alexanderkiyanov --password-stdin
 				docker push alexanderkiyanov/appimg:latest
 				
 				docker rm --force alexanderkiyanov/appimg:latest
